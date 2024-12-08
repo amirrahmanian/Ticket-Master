@@ -67,12 +67,12 @@ export class VerifyPaymentProvider {
 
   async handleRefund(authority: string, amount: number) {
     try {
-      // const res = await axios.post(this.paymentConfiguration.refundUrl, { // // this code need zibal account
-      //   trackId: +authority,
-      //   amount,
-      // });
+      const res = await axios.post(this.paymentConfiguration.refundUrl, {
+        trackId: +authority,
+        amount,
+      });
 
-      return true;
+      return res.result === 1 ? true : false;
     } catch (refundError) {
       throw new Error(String(refundError));
     }
